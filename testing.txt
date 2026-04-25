@@ -1,1 +1,2 @@
 Test file in testing branch
+This is the second line
