@@ -1,0 +1,32 @@
+Hello , This is file2
+This is second line
+
+## Git Reset and Restore
+
+### Git Reset
+The `git reset` command is used to undo changes by moving the HEAD pointer to a different commit. It can affect the commit history, the staging area (index), and the working directory depending on the options used.
+
+Common options:
+- `git reset --soft <commit>`: Moves HEAD to the specified commit but keeps changes in the staging area.
+- `git reset --mixed <commit>` (default): Moves HEAD and unstages changes, but keeps them in the working directory.
+- `git reset --hard <commit>`: Moves HEAD, unstages changes, and discards all changes in the working directory.
+
+Use `git reset` when you want to undo commits or unstage files.
+
+### Git Restore
+The `git restore` command is used to restore files in the working tree to a previous state. It's a newer command (introduced in Git 2.23) that helps avoid confusion with `git reset`.
+
+Common usages:
+- `git restore <file>`: Restores the specified file in the working directory to match the version in the index (staging area).
+- `git restore --staged <file>`: Unstages the file but keeps changes in the working directory.
+- `git restore --source=<commit> <file>`: Restores the file to the state it was in at the specified commit.
+
+Use `git restore` when you want to discard changes in the working directory or unstage files without affecting commit history.
+
+### When to Use Restore Instead of Reset
+Yes, in many cases, you can use `git restore` as a safer alternative to `git reset` for certain operations:
+
+- To unstage files: Use `git restore --staged <file>` instead of `git reset HEAD <file>`. This only affects the staging area without moving HEAD.
+- To discard working directory changes: Use `git restore <file>` instead of `git reset --hard` for individual files.
+
+However, `git reset` is still necessary for operations that involve moving HEAD, like undoing commits or resetting to a previous commit state. `git restore` cannot change commit history.
